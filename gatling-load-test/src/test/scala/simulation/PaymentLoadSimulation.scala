@@ -10,14 +10,14 @@ class PaymentLoadSimulation extends Simulation {
   private val contentType = "application/json"
   private val requestCount = 4
 
-  private val simUsers = System.getProperty("SIM_USERS", "1").toInt
+  private val simUsers = System.getProperty("SIM_USERS", "10").toInt
 
   private val httpConf = http
     .baseURL(baseUrl)
     .acceptHeader("application/json;charset=UTF-8")
 
   private val paymentTest = repeat(requestCount) {
-    exec(http("payment-test")
+    exec(http("/payment")
       .post(endpoint)
       .header("Content-Type", contentType)
       .body(StringBody(
@@ -28,7 +28,8 @@ class PaymentLoadSimulation extends Simulation {
            |  "amount": "1"
            | }
          """.stripMargin
-      )).check(status.is(201)))
+      ))
+      .check(status.is(201), jsonPath("$.paymentDate").exists))
   }
   private val scn = scenario("PaymentLoadSimulation")
     .exec(paymentTest)
