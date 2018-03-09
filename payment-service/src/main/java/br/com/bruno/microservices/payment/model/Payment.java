@@ -35,14 +35,9 @@ public class Payment {
 		return paymentDate;
 	}
 
-	public void pay() {
-		try {
-			// simulating blocking operation
-			Thread.sleep(200);
-		} catch (InterruptedException e) {
-		}
-
+	public Payment pay() {
 		paymentDate = new Date();
+		return this;
 	}
 
 	@Override
