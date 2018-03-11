@@ -28,3 +28,5 @@ mvn -DSIM_USERS=1000 gatling:execute
 ```
 
 _SIM\_USERS_ is an environment variable to specify how many concurrent users shoud be loaded.
+
+4. `wrk` is also available to measure throughput. Check `wrk/run.sh` script with some samples.
