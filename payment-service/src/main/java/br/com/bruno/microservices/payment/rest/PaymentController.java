@@ -20,6 +20,6 @@ public class PaymentController {
 	public Mono<Payment> pay(@RequestBody Mono<Payment> payment) {
 		return payment
 			.delayElement(Duration.ofMillis(200)) // mock blocking action
-			.map(Payment::pay);
+			.flatMap(Mono::just);
 	}
 }

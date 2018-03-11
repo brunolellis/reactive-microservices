@@ -22,8 +22,8 @@ public class PaymentService {
 			.post()
 			.uri(PAYMENT_URI)
 			.body(BodyInserters.fromObject(payment))
-			.retrieve()
-			.bodyToMono(PaymentDTO.class);
+			.exchange()
+			.flatMap(r -> r.bodyToMono(PaymentDTO.class));
 	}
 
 }
