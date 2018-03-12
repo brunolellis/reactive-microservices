@@ -24,9 +24,9 @@ mvn spring-boot:run
 3. Start gatling load test
 ```
 cd gatling-load-test
-mvn -DSIM_USERS=1000 gatling:execute
+./gradlew -DSIM_USERS=1000 gatlingRun
 ```
 
 _SIM\_USERS_ is an environment variable to specify how many concurrent users shoud be loaded.
 
-4. `wrk` is also available to measure throughput. Check `wrk/run.sh` script with some samples.
+4. `wrk` is also available to measure throughput. Check `wrk/run.sh` script for more examples.
